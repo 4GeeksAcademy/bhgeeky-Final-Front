@@ -1,10 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ContactCard } from "../component/ContactCard.jsx";
 import { Context } from "../store/appContext.js";
 import { Link } from "react-router-dom";
 
 export const Contactlist = () => {
-    const {store} = useContext(Context);
+    const {store,actions} = useContext(Context);
+
+useEffect(() => {
+    actions.getContacts()
+},[])
 
     return(
         <div className="card-container shadow-sm rounded">

@@ -9,7 +9,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			baseURLContact: "https://playground.4geeks.com/contact",
 			contacts: [],
 			user: "bhgeeky",
-			currentContact: {}
+			currentContact: {},
+			favorites: [], 
+            characters: [], 
+            selectedCharacter: null, 
+            planets: [], 
+            selectedPlanet: null, 
+            starships: [], 
+            selectedStarship: null,
+			
+
 		},
 		actions: {
 			setIsLogged: (value) => { setStore({ isLogged: value }) },

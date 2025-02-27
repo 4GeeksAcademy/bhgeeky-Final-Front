@@ -7,13 +7,19 @@ import ScrollToTop from "./component/ScrollToTop.jsx";
 import { Navbar } from "./component/Navbar.jsx";
 import { Footer } from "./component/Footer.jsx";
 //Custom Pages
-import { Home } from "./pages/Home.jsx";
+import { HomePage } from "./pages/HomePage.jsx";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { Error404 } from "./pages/Error404.jsx";
 import { NewContact } from "./component/NewContact.jsx";
 import { Contactlist } from "./pages/ContactList.jsx";
 import { Updatecontact } from "./component/UpdateContact.jsx";
+import { CharacterList } from "./pages/CharacterList.jsx";
+import { CharacterDetails } from "./pages/CharacterDetails.jsx";
+import { PlanetDetails } from "./pages/PlanetDetails.jsx";
+import { StarshipDetails } from "./pages/StarshipDetails.jsx";
+import { PlanetList } from "./pages/PlanetList.jsx";
+import { StarshipList } from "./pages/StarshipList.jsx";
 
 
 
@@ -32,13 +38,19 @@ const Layout = () => {
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
+                        <Route element={<HomePage/>} path="/" />
                         <Route element={<Updatecontact/>} path="/updatecontact" />
                         <Route element={<Contactlist/>} path="/contacts" />
                         <Route element={<NewContact/>} path="/newcontact"/>
-                        <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Error404/>} path="*" />
+                        <Route element={<CharacterList/>} path="/characters" />
+                        <Route element={<CharacterDetails/>} path="/characters/:uid" />
+                        <Route element={<PlanetList />} path="/planets" />
+                        <Route element={<PlanetDetails />} path="/planets/:uid" />
+                        <Route element={<StarshipList />} path="/starships" />
+                        <Route element={<StarshipDetails />} path="/starships/:uid" />
                     </Routes>
                     <Footer />
                 </ScrollToTop>
