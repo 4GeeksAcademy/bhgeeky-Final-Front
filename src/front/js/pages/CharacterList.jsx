@@ -9,11 +9,11 @@ export const CharacterList = () => {
     const limit = 10;
 
     useEffect(() => {
-        actions.fetchCharacters(page);
+        actions.getCharacters(page);
     }, [page, actions]);
 
     return (
-        <div className="container mt-3">
+        <div className="container mt-3 bg-dark">
             <h1 className="text-light text-center mb-4">Characters</h1>
 
             {/* Mostrar un mensaje si los personajes no se han cargado */}
@@ -40,14 +40,14 @@ export const CharacterList = () => {
                                         { store.favorites.find((element)=> character.name == element.name ) ?
                                             <span
                                                 className='btn btn-warning'
-                                                onClick={() => actions.removeFromFavorites(character.name)}
+                                                onClick={() => actions.deleteFavourites(character.name)}
                                             >
                                                 <i className="fas fa-heart text-dark"></i>
                                             </span>
                                             :
                                             <span
                                                 className='btn btn-outline-warning'
-                                                onClick={() => actions.addToFavorites(character)}
+                                                onClick={() => actions.addFavourites(character)}
                                             >
                                                 <i className="fas fa-heart"></i>
                                             </span>

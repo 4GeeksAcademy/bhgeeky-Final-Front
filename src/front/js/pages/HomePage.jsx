@@ -8,7 +8,7 @@ export const HomePage = () => {
     return (
         
         <div className="d-flex flex-column justify-content-center align-items-center vh-100 bg-dark text-light">
-            <div className="d-flex justify-content-end mb-3"><Link to="/contacts" className="btn btn-success"> Contact List</Link></div>
+            
             <div className="text-center mb-5"> 
                 <img
                     src="https://starwars.chocobar.net/star-wars-back0.jpg"

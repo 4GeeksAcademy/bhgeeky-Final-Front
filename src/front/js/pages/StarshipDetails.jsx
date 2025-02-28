@@ -7,7 +7,7 @@ export const StarshipDetails = () => {
     const [imageUrl, setImageUrl] = useState(""); // Estado para manejar la URL de la imagen
     const defaultImage = "https://starwars-visualguide.com/assets/img/big-placeholder.jpg";
     useEffect(() => {
-        actions.fetchStarshipDetails(uid); // Obtener detalles de la nave espacial
+        actions.starshipDetails(uid); // Obtener detalles de la nave espacial
         const imageUrl = `https://starwars-visualguide.com/assets/img/starships/${uid}.jpg`;
         const checkImage = async () => {
             // Verificar si la imagen existe

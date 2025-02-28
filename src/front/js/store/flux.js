@@ -10,14 +10,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: [],
 			user: "bhgeeky",
 			currentContact: {},
-			favorites: [], 
-            characters: [], 
-            selectedCharacter: null, 
-            planets: [], 
-            selectedPlanet: null, 
-            starships: [], 
-            selectedStarship: null,
-			
+			favorites: [],
+			currentPagePeople: 1,
+			characters: [],
+			selectedCharacter: null,
+			planets: [],
+			selectedPlanet: null,
+			starships: [],
+			selectedStarship: null,
+			hostStarWarsAPI: 'https://swapi.tech/api',
+
 
 		},
 		actions: {
@@ -52,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
-			setCurrentContact: (item) => {setStore({currentContact: item})},
+			setCurrentContact: (item) => { setStore({ currentContact: item }) },
 			getContacts: async () => {
 				// GET
 				const uri = `${getStore().baseURLContact}/agendas/${getStore().user}/contacts`;
@@ -64,7 +66,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore({ contacts: data.contacts })
 			},
-			addContact : async (newData) => {
+			addContact: async (newData) => {
 				// POST
 				const uri = `https://playground.4geeks.com/contact/agendas/bhgeeky/contacts`
 				const options = {
@@ -82,9 +84,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				getActions().getContacts()
 			},
-			editContact : async (dataContact, id) => {
+			editContact: async (dataContact, id) => {
 				// PUT	
-				const uri = `https://playground.4geeks.com/contact/agendas/bhgeeky/contacts/${id}`;						
+				const uri = `https://playground.4geeks.com/contact/agendas/bhgeeky/contacts/${id}`;
 				const options = {
 					method: 'PUT',
 					headers: {
@@ -99,7 +101,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return
 				}
 				getActions().getContacts();
-				getActions().setCurrentContact({})				
+				getActions().setCurrentContact({})
 			},
 			deleteContact: async (id) => {
 				//DELETE
@@ -114,11 +116,117 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (!response.ok) {
 					console.log('error:', response.status, response.statusText)
 					return
-				}
+				};
 				getActions().getContacts();
-			}
+			},
+				// STARS WARS
+				
+				getCharacters: async () => {
+					try {
+						const options = { method: 'GET', headers: {} };
+						const response = await fetch("https://www.swapi.tech/api/people/", options)
+						if (!response.ok) {
+							console.error("Fetch error getCharacters")
+						}
+						const data = await response.json()
+						setStore({ characters: data["results"] })
+					}
+					catch (error) {
+						console.error("Failed to get getCharacters")
+					}
+				},
+				characterDetails: async (id) => {
+					try {
+						const options = { method: 'GET', headers: {} };
+						const response = await fetch(`https://www.swapi.tech/api/people/${id}`, options)
+						if (!response.ok) {
+							console.error("Fetch error characterDetails")
+						}
+						const data = await response.json()
+						setStore({ selectedCharacter: data.result.properties })
+					}
+					catch (error) {
+						console.error("Failed to get characterDetails")
+					}
+				},
+				// PLANETS
+				getPlanets: async (id) => {
+					try {
+						const options = { method: 'GET', headers: {} };
+						const response = await fetch("https://www.swapi.tech/api/planets/", options)
+	
+						if (!response.ok) {
+							console.error("Fetch error getPlanets");
+							return;
+						}
+						const data = await response.json();
+						setStore({ planets: data["results"] })
+					}
+					catch (error) {
+						console.error("Failed to get getPlanets")
+					}
+				},
+				planetDetails: async (id) => {
+					try {
+						const options = { method: 'GET', headers: {} };
+						const response = await fetch(`https://www.swapi.tech/api/planets/${id}`, options)
+						if (!response.ok) {
+							console.error("Fetch error characterDetails")
+						}
+						const data = await response.json()
+						setStore({ selectedPlanet: data.result.properties })
+					}
+					catch (error) {
+						console.error("Failed to get characterDetails")
+					}
+				},
+				// STARSHIPS
+				getVehicles: async () => {
+					try {
+						const options = { method: 'GET', headers: {} };
+						const response = await fetch("https://www.swapi.tech/api/vehicles/", options)
+						if (!response.ok) {
+							console.error("Fetch error getVehicles")
+						}
+						const data = await response.json()
+						setStore({ starships: data["results"] })
+					}
+					catch (error) {
+						console.error("Failed to get getVehicles")
+					}
+				},
+				starshipDetails: async (id) => {
+					try {
+						const options = { method: 'GET', headers: {} };
+						const response = await fetch(`https://www.swapi.tech/api/vehicles/${id}`, options)
+						if (!response.ok) {
+							console.error("Fetch error characterDetails")
+						}
+						const data = await response.json()
+						setStore({ selectedStarship: data.result.properties })
+					}
+					catch (error) {
+						console.error("Failed to get characterDetails")
+					}
+				},
+				// FAVOURITES
+				addFavourite: (item) => {
+					const store = getStore()
+					console.log("Current store:", store);
+					if (!store.favorites.includes(item)) {
+						setStore({ favorites: [...store.favorites, item] })
+					}
+				},
+				deleteFavourite: (index) => {
+					const store = getStore()
+					const favouritesList = [...store.favorites]
+					favouritesList.splice(index, 1)
+					setStore({ favorites: favouritesList })
+				},
+			}	
+			
 		}
-	};
-};
+	}
+
 
 export default getState;

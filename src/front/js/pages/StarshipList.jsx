@@ -7,14 +7,14 @@ export const StarshipList = () => {
     const [page, setPage] = useState(1); // Manejo de paginación
     const limit = 10;
     useEffect(() => {
-        actions.fetchStarships(page);
+        actions.getVehicles(page);
     }, [page]);
 
     const isFavorite = (name) => {
         return store.favorites.some((fav) => fav.name === name);
     };
     return (
-        <div className="container mt-3">
+        <div className="container mt-3 bg-dark">
             <h1 className="text-light text-center mb-4">Starships</h1>
             <div className="row">
                 {store.starships.map((starship, index) => (
@@ -41,8 +41,8 @@ export const StarshipList = () => {
                                         }`}
                                         onClick={() =>
                                             isFavorite(starship.name)
-                                                ? actions.removeFromFavorites(starship.name)
-                                                : actions.addToFavorites(starship)
+                                                ? actions.deleteFavourite(starship.name)
+                                                : actions.addFavourite(starship)
                                         }
                                     >
                                         <i

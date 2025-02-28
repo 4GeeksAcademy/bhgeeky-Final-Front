@@ -8,7 +8,7 @@ export const CharacterDetails = () => {
     const defaultImage = "https://starwars-visualguide.com/assets/img/big-placeholder.jpg";
 
     useEffect(() => {
-        actions.fetchCharacterDetails(uid); // Obtener los detalles del personaje
+        actions.characterDetails(uid); // Obtener los detalles del personaje
 
         const imageUrl = `https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`;
 

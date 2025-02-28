@@ -7,7 +7,7 @@ export const PlanetDetails = () => {
     const [imageUrl, setImageUrl] = useState(""); // Estado para manejar la URL de la imagen
     const defaultImage = "https://starwars-visualguide.com/assets/img/big-placeholder.jpg";
     useEffect(() => {
-        actions.fetchPlanetDetails(uid); // Obtener detalles del planeta
+        actions.planetDetails(uid); // Obtener detalles del planeta
         const imageUrl = `https://starwars-visualguide.com/assets/img/planets/${uid}.jpg`;
         const checkImage = async () => {
             // Verificar si la imagen existe

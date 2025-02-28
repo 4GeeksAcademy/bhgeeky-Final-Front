@@ -7,13 +7,13 @@ export const PlanetList = () => {
     const [page, setPage] = useState(1); // Manejo de paginación
     const limit = 10;
     useEffect(() => {
-        actions.fetchPlanets(page);
+        actions.getPlanets(page);
     }, [page]);
     const isFavorite = (name) => {
         return store.favorites.some((fav) => fav.name === name);
     };
     return (
-        <div className="container mt-3">
+        <div className="container mt-3 bg-dark">
             <h1 className="text-light text-center mb-4">Planets</h1>
             <div className="row">
                 {store.planets.map((planet, index) => (
@@ -40,8 +40,8 @@ export const PlanetList = () => {
                                         }`}
                                         onClick={() =>
                                             isFavorite(planet.name)
-                                                ? actions.removeFromFavorites(planet.name)
-                                                : actions.addToFavorites(planet)
+                                                ? actions.deleteFavourite(planet.name)
+                                                : actions.addFavourite(planet)
                                         }
                                     >
                                         <i
