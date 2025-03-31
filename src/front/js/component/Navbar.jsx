@@ -10,10 +10,12 @@ export const Navbar = () => {
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
 				</Link>
-				<div className="d-flex justify-content-end" ><Link to="/contacts" className="btn btn-success"> Contact List</Link></div>
-				<div className="d-flex justify-content-end" ><Link to="/characters" className="btn btn-success"> Characters</Link></div>
-				<div className="d-flex justify-content-end" ><Link to="/planets" className="btn btn-success"> Planets</Link></div>
-				<div className="d-flex justify-content-end" ><Link to="/starships" className="btn btn-success"> Starships</Link></div>
+				<div className="justify-content">
+				<div className="d-flex " ><Link to="/contacts" className="btn btn-success"> Contact List</Link></div>
+				<div className="d-flex " ><Link to="/characters" className="btn btn-success"> Characters</Link></div>
+				<div className="d-flex " ><Link to="/planets" className="btn btn-success"> Planets</Link></div>
+				<div className="d-flex " ><Link to="/starships" className="btn btn-success"> Starships</Link></div>
+				</div>
 				<div className="ml-auto">
 					<Link to="/demo">
 						<button className="btn btn-primary">Check the Context in action</button>
@@ -23,3 +25,4 @@ export const Navbar = () => {
 		</nav>
 	);
 };
+
